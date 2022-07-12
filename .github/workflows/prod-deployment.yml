@@ -1,0 +1,19 @@
+name: Deployment
+on:
+  push:
+    branches:
+      - main
+jobs:
+  Deploy-to-VPS:
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v3
+      - name: Stop and delete container
+        run: docker stop messages_backend
+      - run: docker rm -f messages_backend
+      - name: Delete image
+        run: docker rmi -f messages_backend_image
+      - name: Generate image
+        run: docker build -t messages_backend_image .
+      - name: Exec container
+        run: docker run --name messages_backend -d -p "8001:4000" --env "PORT=${{ secrets.PORT }}" --restart always messages_backend_image
