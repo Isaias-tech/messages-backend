@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npx nodemon --watch ./src ./src/index.ts",
+    "start": "npx nodemon -L --watch ./src ./src/index.ts",
     "build": "npx tsc"
   },
   "author": "Isaias Santiago Toribio",

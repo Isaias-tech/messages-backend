@@ -1,12 +1,13 @@
-version: '3.9'
+version: '3'
 services:
-  sacms-backend:
-    container_name: chat-backend
+  messages_backend:
+    container_name: messages_backend
+    image: messages_backend_image
     build: 
       context: .
       dockerfile: Dockerfile.dev
     ports:
-      - '4000:4000'
+      - '8001:4000'
     volumes:
       - ./:/app
       - exclude:/app/node_modules/
